@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-RUN apk --update add alpine-sdk sudo \
+RUN apk --update add alpine-sdk sudo vim \
     && rm -rf /var/cache/apk/*
 
 RUN adduser -h /home/alpine -s /bin/sh -D alpine alpine \
