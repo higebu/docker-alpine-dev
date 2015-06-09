@@ -2,6 +2,8 @@
 
 git config --global user.name "$USER_NAME"
 git config --global user.email "$USER_EMAIL"
+git config --global color.ui true
+git config --global core.pager vim
 
 sed -i "s/^#PACKAGER=\"Your Name <your@email.address>\"/PACKAGER=\"$USER_NAME <$USER_EMAIL>\"/" /etc/abuild.conf
 

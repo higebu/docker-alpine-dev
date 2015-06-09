@@ -1,8 +1,14 @@
 FROM alpine:latest
 
-RUN apk --update add alpine-sdk \
+RUN apk --update add alpine-sdk sudo \
     && rm -rf /var/cache/apk/*
 
-COPY docker-entrypoint.sh /docker-entrypoint.sh
+RUN adduser -h /home/alpine -s /bin/sh -D alpine alpine \
+    && echo "alpine ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
-ENTRYPOINT ["/docker-entrypoint.sh"]
+USER alpine
+WORKDIR /home/alpine
+
+COPY docker-entrypoint.sh /home/alpine/docker-entrypoint.sh
+
+ENTRYPOINT ["/home/alpine/docker-entrypoint.sh"]
